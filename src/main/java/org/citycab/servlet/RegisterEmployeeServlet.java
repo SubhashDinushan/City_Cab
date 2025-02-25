@@ -25,6 +25,7 @@ public class RegisterEmployeeServlet extends HttpServlet {
         String nic = request.getParameter("nic");
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
+        String pwd = request.getParameter("pwd");
 
         // Validate form input (optional)
         if (name == null || nic == null || email == null || mobile == null ||
@@ -41,13 +42,14 @@ public class RegisterEmployeeServlet extends HttpServlet {
             conn = DBConnection.getConnection();
 
             // Correct SQL query (Without emp_id if it's auto-generated)
-            String sql = "INSERT INTO employee (emp_name, emp_nic, emp_email, emp_mobileNo) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO employee (emp_name, emp_nic, emp_email, emp_mobileNo,password) VALUES (?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
             stmt.setString(2, nic);
             stmt.setString(3, email);
             stmt.setString(4, mobile);
+            stmt.setString(5, pwd);
 
             // Execute update
             int rowsInserted = stmt.executeUpdate();
