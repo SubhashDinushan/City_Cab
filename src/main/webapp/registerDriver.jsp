@@ -98,6 +98,11 @@
             <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
         </div>
 
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="text" id="pwd" name="pwd" placeholder="Enter the password" required>
+        </div>
+
         <button type="submit" class="submit-btn">Register</button>
     </form>
 </div>

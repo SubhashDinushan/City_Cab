@@ -91,7 +91,7 @@
         </div>
         <div class="form-group">
             <label for="mobile">Password</label>
-            <input type="pwd" id="pwd" name="pwd" placeholder="Enter the password" required>
+            <input type="text" id="pwd" name="pwd" placeholder="Enter the password" required>
         </div>
         <button type="submit" class="submit-btn">Register</button>
     </form>
