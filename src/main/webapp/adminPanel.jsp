@@ -119,18 +119,6 @@
     </ul>
 </nav>
 
-<%--<%--%>
-<%--    String message = (String) request.getSession().getAttribute("message");--%>
-<%--    if (message != null) {--%>
-<%--        request.getSession().removeAttribute("message"); // Clear the message after displaying it--%>
-<%--%>--%>
-<%--<script>--%>
-<%--    alert("<%= message %>");--%>
-<%--</script>--%>
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
-
 <section class="admin-section">
     <h2>Add Vehicle</h2>
     <form method="post" enctype="multipart/form-data">
