@@ -73,7 +73,7 @@ public class RegisterEmployeeServlet extends HttpServlet {
             pstmt.setString(1, userType);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    String[] user = new String[5];
+                    String[] user = new String[5]; // Only 5 fields are being fetched
                     user[0] = rs.getString("emp_id");
                     user[1] = rs.getString("emp_name");
                     user[2] = rs.getString("emp_nic");
