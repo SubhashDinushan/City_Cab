@@ -1,3 +1,23 @@
+<%--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
+<%--<!DOCTYPE html>--%>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title>JSP - Hello World</title>--%>
+<%--</head>--%>
+<%--<body>--%>
+<%--<h1><%= "Hello World!" %>--%>
+<%--</h1>--%>
+<%--<br/>--%>
+<%--<a href="hello-servlet">Hello Servlet</a>--%>
+<%--<br>--%>
+<%--&lt;%&ndash;<a href="driver.jsp">Hello Servlet</a>&ndash;%&gt;--%>
+<%--<button onclick="window.location.href='registerDriver.jsp'">DriverPage</button>--%>
+<%--<br>--%>
+<%--<button onclick="window.location.href='RegisterEmployee.jsp'">Employee</button>--%>
+
+<%--</body>--%>
+<%--</html>--%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +64,8 @@
         <select name="role">
             <option value="admin">Admin</option>
             <option value="employee">Employee</option>
+
+
         </select>
         <input type="text" name="Email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>

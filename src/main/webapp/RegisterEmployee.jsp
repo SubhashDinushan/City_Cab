@@ -39,7 +39,7 @@
             margin-bottom: 5px;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -69,13 +69,13 @@
 <body>
 
 <div class="container">
-    <h2>Register Employee</h2>
+    <h2>Register Admin / Employee</h2>
     <form action="registerEmployee" method="POST">
         <div class="form-group">
             <label for="name">Employee Name</label>
             <input type="text" id="name" name="name" placeholder="Enter employee name" required>
-
         </div>
+
         <div class="form-group">
             <label for="nic">Employee NIC</label>
             <input type="text" id="nic" name="nic" placeholder="Enter employee NIC" required>
@@ -85,14 +85,25 @@
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter employee email" required>
         </div>
+
         <div class="form-group">
             <label for="mobile">Mobile Number</label>
             <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
         </div>
+
         <div class="form-group">
-            <label for="mobile">Password</label>
+            <label for="pwd">Password</label>
             <input type="text" id="pwd" name="pwd" placeholder="Enter the password" required>
         </div>
+
+        <div class="form-group">
+            <label for="role">User Type</label>
+            <select id="role" name="role" required>
+                <option value="admin">Admin</option>
+                <option value="employee">Employee</option>
+            </select>
+        </div>
+
         <button type="submit" class="submit-btn">Register</button>
     </form>
 </div>
