@@ -48,7 +48,7 @@ public class RegisterDriverServlet extends HttpServlet {
             int rowsInserted = stmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                response.sendRedirect("success.html"); // Redirect to success page
+                response.sendRedirect("admin-panel");
             } else {
                 response.sendRedirect("error.html"); // Redirect to error page
             }

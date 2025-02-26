@@ -1,32 +1,38 @@
 package org.citycab.model;
 
 public class Vehicle {
-    private String vehicleId; // Unique identifier for the vehicle
-    private String vehicleType; // Type of the vehicle (e.g., Sedan, SUV)
-    private double price; // Price of the vehicle
-    private String driverName; // Name of the driver assigned to the vehicle
-    private String vehiclePhoto; // Path to the vehicle's photo
+    private int vehicleId; // New field for vehicle ID
+    private String vehicleType;
+    private double price;
+    private String driverId; // References driver_id from the drivers table
+    private String driverName; // Temporary field to store driver name
+    private String vehiclePhoto;
 
-    // Default constructor
-    public Vehicle() {
+    // Constructor without vehicleId (for adding new vehicles)
+    public Vehicle(String vehicleType, double price, String driverId, String driverName, String vehiclePhoto) {
+        this.vehicleType = vehicleType;
+        this.price = price;
+        this.driverId = driverId;
+        this.driverName = driverName;
+        this.vehiclePhoto = vehiclePhoto;
     }
 
-    // Parameterized constructor
-    public Vehicle(String vehicleId, String vehicleType, double price, String driverName, String vehiclePhoto) {
+    // Constructor with vehicleId (for updating existing vehicles)
+    public Vehicle(int vehicleId, String vehicleType, double price, String driverId, String driverName, String vehiclePhoto) {
         this.vehicleId = vehicleId;
         this.vehicleType = vehicleType;
         this.price = price;
+        this.driverId = driverId;
         this.driverName = driverName;
         this.vehiclePhoto = vehiclePhoto;
     }
 
     // Getters and Setters
-
-    public String getVehicleId() {
+    public int getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(String vehicleId) {
+    public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
     }
 
@@ -46,6 +52,14 @@ public class Vehicle {
         this.price = price;
     }
 
+    public String getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
+    }
+
     public String getDriverName() {
         return driverName;
     }
@@ -62,13 +76,13 @@ public class Vehicle {
         this.vehiclePhoto = vehiclePhoto;
     }
 
-    // toString method for debugging and logging
     @Override
     public String toString() {
         return "Vehicle{" +
-                "vehicleId='" + vehicleId + '\'' +
+                "vehicleId=" + vehicleId +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", price=" + price +
+                ", driverId='" + driverId + '\'' +
                 ", driverName='" + driverName + '\'' +
                 ", vehiclePhoto='" + vehiclePhoto + '\'' +
                 '}';
