@@ -10,7 +10,7 @@ import java.util.List;
 public class VehicleDAO {
 
     // Add a new vehicle to the database
-    public void addVehicle(Vehicle vehicle) {
+    public boolean addVehicle(Vehicle vehicle) {
         String sql = "INSERT INTO vehicles (vehicle_type, vehicle_price, driver_id, vehicle_photo) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
@@ -20,9 +20,9 @@ public class VehicleDAO {
             stmt.setDouble(2, vehicle.getPrice());
             stmt.setString(3, vehicle.getDriverId());
             stmt.setString(4, vehicle.getVehiclePhoto());
-            stmt.executeUpdate();
 
-            System.out.println("Vehicle added successfully!");
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class VehicleDAO {
                         rs.getString("vehicle_type"),
                         rs.getDouble("vehicle_price"),
                         null, // driverId is not needed here
-                        rs.getString("driver_name"), // Fetch driver_name from the join
+                        rs.getString("driver_name"),
                         rs.getString("vehicle_photo")
                 );
                 vehicles.add(vehicle);
@@ -80,7 +80,7 @@ public class VehicleDAO {
                         rs.getString("vehicle_type"),
                         rs.getDouble("vehicle_price"),
                         null, // driverId is not needed here
-                        rs.getString("driver_name"), // Fetch driver_name from the join
+                        rs.getString("driver_name"),
                         rs.getString("vehicle_photo")
                 );
             }
@@ -92,8 +92,9 @@ public class VehicleDAO {
         return vehicle;
     }
 
+
     // Add a new driver to the drivers table
-    public void addDriver(String driverName, String driverNic, String driverLicenseNo, String driverEmail, String driverMobileNo) {
+    public boolean addDriver(String driverName, String driverNic, String driverLicenseNo, String driverEmail, String driverMobileNo) {
         String sql = "INSERT INTO drivers (driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
@@ -104,9 +105,9 @@ public class VehicleDAO {
             stmt.setString(3, driverLicenseNo);
             stmt.setString(4, driverEmail);
             stmt.setString(5, driverMobileNo);
-            stmt.executeUpdate();
 
-            System.out.println("Driver added successfully!");
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // Return true if the driver was added successfully
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,16 +160,15 @@ public class VehicleDAO {
     }
 
     // Delete a vehicle by vehicle ID
-    public void deleteVehicle(int vehicleId) {
+    public boolean deleteVehicle(int vehicleId) {
         String sql = "DELETE FROM vehicles WHERE vehicle_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, vehicleId);
-            stmt.executeUpdate();
-
-            System.out.println("Vehicle deleted successfully!");
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -177,7 +177,7 @@ public class VehicleDAO {
     }
 
     // Update a vehicle's details
-    public void updateVehicle(Vehicle vehicle) {
+    public boolean updateVehicle(Vehicle vehicle) {
         String sql = "UPDATE vehicles SET vehicle_type = ?, vehicle_price = ?, driver_id = ?, vehicle_photo = ? WHERE vehicle_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
@@ -188,9 +188,9 @@ public class VehicleDAO {
             stmt.setString(3, vehicle.getDriverId());
             stmt.setString(4, vehicle.getVehiclePhoto());
             stmt.setInt(5, vehicle.getVehicleId());
-            stmt.executeUpdate();
 
-            System.out.println("Vehicle updated successfully!");
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();

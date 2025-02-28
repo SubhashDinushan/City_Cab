@@ -68,6 +68,10 @@ public class AdminPanelServlet extends HttpServlet {
             String fileName = filePart.getSubmittedFileName();
             String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
 
+            // Debugging output
+            System.out.println("File Name: " + fileName);
+            System.out.println("Upload Path: " + uploadPath);
+
             // Create the upload directory if it doesn't exist
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
@@ -77,6 +81,9 @@ public class AdminPanelServlet extends HttpServlet {
             // Save the file to the upload directory
             String filePath = uploadPath + File.separator + fileName;
             filePart.write(filePath);
+
+            // Debugging output
+            System.out.println("File Saved At: " + filePath);
 
             // Save the file path in the database (relative to the project)
             String photoPath = UPLOAD_DIR + "/" + fileName;
@@ -88,9 +95,19 @@ public class AdminPanelServlet extends HttpServlet {
                 return;
             }
 
+            // Debugging output
+            System.out.println("Driver ID: " + driverId);
+
             // Create a new Vehicle object and add it to the database
             Vehicle newVehicle = new Vehicle(vehicleType, price, driverId, driverName, photoPath);
-            vehicleDAO.addVehicle(newVehicle);
+            boolean isAdded = vehicleDAO.addVehicle(newVehicle);
+
+            // Debugging output
+            if (isAdded) {
+                System.out.println("Vehicle added successfully!");
+            } else {
+                System.out.println("Failed to add vehicle.");
+            }
 
             // Redirect to the admin panel page
             response.sendRedirect("admin-panel");

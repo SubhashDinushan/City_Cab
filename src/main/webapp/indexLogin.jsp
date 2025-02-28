@@ -35,17 +35,26 @@
         button:hover {
             background-color: #218838;
         }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 <div class="login-container">
     <h2>Login</h2>
-    <form action="#" method="post">
+    <%-- Display error message if login fails --%>
+    <div class="error-message">
+        ${errorMessage}
+    </div>
+
+    <form action="login" method="post">
         <select name="role">
             <option value="admin">Admin</option>
             <option value="employee">Employee</option>
         </select>
-        <input type="text" name="Email" placeholder="Email" required>
+        <input type="text" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
