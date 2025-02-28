@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List, org.citycab.model.Vehicle" %>
 
+
 <%
     // Session validation
     if (session.getAttribute("user") == null) {
@@ -120,7 +121,7 @@
 
 <nav>
     <ul>
-        <li><a href="#">Dashboard</a></li>
+        <li><a href="adminPanel.jsp">Dashboard</a></li>
         <li><a href="#">Booking</a></li>
         <li><a href="RegisterEmployee.jsp">Add Employee</a></li>
         <li><a href="registerDriver.jsp">Add Driver</a></li>
@@ -172,7 +173,7 @@
         %>
         <tr>
             <td><%= v.getVehicleType() %></td>
-            <td>$<%= v.getPrice() %></td>
+            <td>RS: <%= v.getPrice() %></td>
             <td><%= v.getDriverName() %></td>
             <td><img src="<%= v.getVehiclePhoto() %>" alt="Vehicle Image" width="100"></td>
             <td>
@@ -188,3 +189,4 @@
 </section>
 </body>
 </html>
+

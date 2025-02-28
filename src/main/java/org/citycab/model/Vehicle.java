@@ -27,6 +27,7 @@ public class Vehicle {
         this.vehiclePhoto = vehiclePhoto;
     }
 
+
     // Getters and Setters
     public int getVehicleId() {
         return vehicleId;

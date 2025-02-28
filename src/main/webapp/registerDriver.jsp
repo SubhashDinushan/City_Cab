@@ -13,6 +13,26 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+        }
+
+        nav ul {
+            list-style: none;
+            background: #444;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
         }
 
         .container {
@@ -69,6 +89,22 @@
 </head>
 <body>
 
+<nav>
+    <ul>
+        <li><a href="adminPanel.jsp">Dashboard</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="RegisterEmployee.jsp">Add Employee</a></li>
+        <li><a href="registerDriver.jsp">Add Driver</a></li>
+        <li>
+            <% if (session.getAttribute("user") != null) { %>
+            <a href="logout">Logout</a>
+            <% } else { %>
+            <a href="indexLogin.jsp">Login</a>
+            <% } %>
+        </li>
+    </ul>
+</nav>
+
 <div class="container">
     <h2>Register Driver</h2>
     <form action="registerDriver" method="POST">
@@ -83,10 +119,9 @@
         </div>
 
         <div class="form-group">
-            <label for="license">Driver Licen</label>
-            <input type="text" id="license" name="license" placeholder="Enter Driver Licen" required>
+            <label for="license">Driver License</label>
+            <input type="text" id="license" name="license" placeholder="Enter Driver License" required>
         </div>
-
 
         <div class="form-group">
             <label for="email">Email</label>

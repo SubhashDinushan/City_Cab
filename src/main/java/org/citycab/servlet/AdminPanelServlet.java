@@ -26,6 +26,20 @@ public class AdminPanelServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads";
 
     @Override
+    public void init() throws ServletException {
+        super.init();
+        try {
+            // Preload vehicle list when server starts
+            List<Vehicle> vehicleList = vehicleDAO.getAllVehicles();
+            getServletContext().setAttribute("vehicles", vehicleList);
+            System.out.println("Vehicles loaded at startup.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException("Error loading vehicles on startup: " + e.getMessage());
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Fetch all vehicles from the database
@@ -39,6 +53,7 @@ public class AdminPanelServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error retrieving vehicles: " + e.getMessage());
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -117,3 +132,4 @@ public class AdminPanelServlet extends HttpServlet {
         }
     }
 }
+
