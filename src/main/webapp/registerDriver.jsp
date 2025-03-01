@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Register Drivers</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -14,6 +20,7 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            padding: 20px;
         }
 
         nav ul {
@@ -40,7 +47,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
 
@@ -85,6 +93,60 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
