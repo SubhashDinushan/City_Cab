@@ -373,7 +373,6 @@
         <li><a href="RegisterEmployee.jsp">Add Employee</a></li>
         <li><a href="registerDriver.jsp">Add Driver</a></li>
         <li>
-            <% if (session.getAttribute("user") != null) { %>
             <a href="logout">Logout</a>
             <% } else { %>
             <a href="indexLogin.jsp">Login</a>

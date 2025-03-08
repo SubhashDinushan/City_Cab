@@ -258,6 +258,8 @@
             <p><strong>Departure:</strong> 2025-02-10</p>
             <p><strong>Return:</strong> 2025-02-15</p>
             <p><strong>Passengers:</strong> 5</p>
+
+<%--            Vehicle Details--%>
             <h2>Vehicle Details</h2>
             <p><strong>Vehicle Type:</strong> SUV</p>
             <p><strong>Price:</strong> $200</p>
@@ -265,9 +267,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 <!-- Customer Adding Form -->
 <div class="customer-form">
@@ -296,8 +295,6 @@
 </div>
 
 </section>
-
-
 
 <!-- Footer -->
 <footer>
