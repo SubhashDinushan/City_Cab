@@ -260,7 +260,7 @@
 
         .vehicle-options { text-align: center; margin-top: 20px; }
         .vehicle-card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: inline-block; margin: 10px; width: 250px; }
-        .vehicle-card img { width: 100%; height: auto; border-radius: 5px; }
+        .vehicle-card img { width: 60%; height: 50%; border-radius: 5px; }
         .vehicle-card button { background: #0b0b54; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; }
         footer { background: #1a1a2e; color: white; padding: 20px; text-align: center; }
         .footer-content { max-width: 1100px; margin: auto; }
@@ -318,9 +318,22 @@
             <h3>RS <%= vehicle.getPrice() %> <p>(per day)</p></h3>
             <p><%= vehicle.getVehicleType() %></p>
             <p>Driver: <%= vehicle.getDriverName() %></p>
-            <a href="addCustomerEmployee.jsp?from=<%= from %>&to=<%= to %>&departureDate=<%= departureDate %>&returnDate=<%= returnDate %>&passengers=<%= passengers %>&vehicle=<%= vehicle.getVehicleType() %>">
+<%--            <a href="addCustomerEmployee.jsp?from=<%= from %>&to=<%= to %>&departureDate=<%= departureDate %>&returnDate=<%= returnDate %>&passengers=<%= passengers %>&vehicle=<%= vehicle.getVehicleType() %>&price=<%= vehicle.getPrice() %>&driver=<%= vehicle.getDriverName() %>">--%>
+<%--                <button>Book Now</button>--%>
+<%--            </a>--%>
+            <a href="addCustomerEmployee.jsp?from=<%= from %>
+    &to=<%= to %>
+    &departureDate=<%= departureDate %>
+    &returnDate=<%= returnDate %>
+    &passengers=<%= passengers %>
+    &vehicle=<%= vehicle.getVehicleType() %>
+    &price=<%= vehicle.getPrice() %>
+    &driver=<%= java.net.URLEncoder.encode(vehicle.getDriverName(), "UTF-8") %>">
                 <button>Book Now</button>
             </a>
+
+
+
         </div>
         <% } %>
         <% } else { %>
