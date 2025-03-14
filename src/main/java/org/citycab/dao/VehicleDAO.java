@@ -11,14 +11,14 @@ public class VehicleDAO {
 
     // Add a new vehicle to the database
     public boolean addVehicle(Vehicle vehicle) {
-        String sql = "INSERT INTO vehicles (vehicle_type, vehicle_price, driver_id, vehicle_photo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO vehicle (vehicle_type, vehicle_price, driver_id, vehicle_photo) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, vehicle.getVehicleType());
             stmt.setDouble(2, vehicle.getPrice());
-            stmt.setString(3, vehicle.getDriverId());
+            stmt.setInt(3, vehicle.getDriverId());
             stmt.setString(4, vehicle.getVehiclePhoto());
 
             int rowsAffected = stmt.executeUpdate();
@@ -34,8 +34,8 @@ public class VehicleDAO {
     public List<Vehicle> getAllVehicles() {
         List<Vehicle> vehicles = new ArrayList<>();
         String sql = "SELECT v.vehicle_id, v.vehicle_type, v.vehicle_price, v.vehicle_photo, d.driver_name " +
-                "FROM vehicles v " +
-                "JOIN drivers d ON v.driver_id = d.driver_id";
+                "FROM vehicle v " +
+                "JOIN driver d ON v.driver_id = d.driver_id";
 
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -46,7 +46,7 @@ public class VehicleDAO {
                         rs.getInt("vehicle_id"),
                         rs.getString("vehicle_type"),
                         rs.getDouble("vehicle_price"),
-                        null, // driverId is not needed here
+                        0, // driverId is not needed here
                         rs.getString("driver_name"),
                         rs.getString("vehicle_photo")
                 );
@@ -63,8 +63,8 @@ public class VehicleDAO {
     // Retrieve a vehicle by its ID
     public Vehicle getVehicleById(int vehicleId) {
         String sql = "SELECT v.vehicle_type, v.vehicle_price, v.vehicle_photo, d.driver_name " +
-                "FROM vehicles v " +
-                "JOIN drivers d ON v.driver_id = d.driver_id " +
+                "FROM vehicle v " +
+                "JOIN driver d ON v.driver_id = d.driver_id " +
                 "WHERE v.vehicle_id = ?";
         Vehicle vehicle = null;
 
@@ -79,7 +79,7 @@ public class VehicleDAO {
                         vehicleId,
                         rs.getString("vehicle_type"),
                         rs.getDouble("vehicle_price"),
-                        null, // driverId is not needed here
+                        0, // driverId is not needed here
                         rs.getString("driver_name"),
                         rs.getString("vehicle_photo")
                 );
@@ -92,10 +92,32 @@ public class VehicleDAO {
         return vehicle;
     }
 
+    public int getVehicleId(String vehicleType) {
+        String sql = "SELECT vehicle_id from vehicle where vehicle_type = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, vehicleType);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                return rs.getInt("vehicle_id");
+            }else{
+                return -1;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting vehicle id from from the database", e);
+        }
+    }
+
 
     // Add a new driver to the drivers table
     public boolean addDriver(String driverName, String driverNic, String driverLicenseNo, String driverEmail, String driverMobileNo) {
-        String sql = "INSERT INTO drivers (driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO driver (driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -116,9 +138,9 @@ public class VehicleDAO {
     }
 
     // Retrieve driver_id by driver name
-    public String getDriverIdByName(String driverName) {
-        String sql = "SELECT driver_id FROM drivers WHERE driver_name = ?";
-        String driverId = null;
+    public int getDriverIdByName(String driverName) {
+        String sql = "SELECT driver_id FROM driver WHERE driver_name = ?";
+        int driverId = 0;
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -127,7 +149,7 @@ public class VehicleDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                driverId = rs.getString("driver_id");
+                driverId = rs.getInt("driver_id");
             }
 
         } catch (SQLException e) {
@@ -138,14 +160,14 @@ public class VehicleDAO {
     }
 
     // Retrieve driver name by driver ID
-    public String getDriverNameById(String driverId) {
-        String sql = "SELECT driver_name FROM drivers WHERE driver_id = ?";
+    public String getDriverNameById(int driverId) {
+        String sql = "SELECT driver_name FROM driver WHERE driver_id = ?";
         String driverName = null;
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, driverId);
+            stmt.setInt(1, driverId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -161,7 +183,7 @@ public class VehicleDAO {
 
     // Delete a vehicle by vehicle ID
     public boolean deleteVehicle(int vehicleId) {
-        String sql = "DELETE FROM vehicles WHERE vehicle_id = ?";
+        String sql = "DELETE FROM vehicle WHERE vehicle_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -178,14 +200,14 @@ public class VehicleDAO {
 
     // Update a vehicle's details
     public boolean updateVehicle(Vehicle vehicle) {
-        String sql = "UPDATE vehicles SET vehicle_type = ?, vehicle_price = ?, driver_id = ?, vehicle_photo = ? WHERE vehicle_id = ?";
+        String sql = "UPDATE vehicle SET vehicle_type = ?, vehicle_price = ?, driver_id = ?, vehicle_photo = ? WHERE vehicle_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, vehicle.getVehicleType());
             stmt.setDouble(2, vehicle.getPrice());
-            stmt.setString(3, vehicle.getDriverId());
+            stmt.setInt(3, vehicle.getDriverId());
             stmt.setString(4, vehicle.getVehiclePhoto());
             stmt.setInt(5, vehicle.getVehicleId());
 

@@ -39,7 +39,7 @@
       <li><a href="employee.jsp">Home</a></li>
       <li><a href="#">Book</a></li>
       <li><a href="#">Offers</a></li>
-      <li><a href="#">Help</a></li>
+      <li><a href="help.jsp">Help</a></li>
     </ul>
     <% if (session.getAttribute("user") != null) { %>
     <a href="logout" class="login-btn">Logout</a>

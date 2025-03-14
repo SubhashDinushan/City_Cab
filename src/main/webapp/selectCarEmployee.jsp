@@ -318,9 +318,10 @@
             <h3>RS <%= vehicle.getPrice() %> <p>(per day)</p></h3>
             <p><%= vehicle.getVehicleType() %></p>
             <p>Driver: <%= vehicle.getDriverName() %></p>
-<%--            <a href="addCustomerEmployee.jsp?from=<%= from %>&to=<%= to %>&departureDate=<%= departureDate %>&returnDate=<%= returnDate %>&passengers=<%= passengers %>&vehicle=<%= vehicle.getVehicleType() %>&price=<%= vehicle.getPrice() %>&driver=<%= vehicle.getDriverName() %>">--%>
-<%--                <button>Book Now</button>--%>
-<%--            </a>--%>
+
+            <%--            <a href="addCustomerEmployee.jsp?from=<%= from %>&to=<%= to %>&departureDate=<%= departureDate %>&returnDate=<%= returnDate %>&passengers=<%= passengers %>&vehicle=<%= vehicle.getVehicleType() %>&price=<%= vehicle.getPrice() %>&driver=<%= vehicle.getDriverName() %>">--%>
+            <%--                <button>Book Now</button>--%>
+            <%--            </a>--%>
             <a href="addCustomerEmployee.jsp?from=<%= from %>
     &to=<%= to %>
     &departureDate=<%= departureDate %>

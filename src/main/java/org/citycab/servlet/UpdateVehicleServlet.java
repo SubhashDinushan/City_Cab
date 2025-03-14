@@ -24,7 +24,7 @@ public class UpdateVehicleServlet extends HttpServlet {
         String vehiclePhoto = request.getParameter("vehicle-photo");
 
         VehicleDAO vehicleDAO = new VehicleDAO();
-        Vehicle vehicle = new Vehicle(vehicleId, vehicleType, price, null, driverName, vehiclePhoto);
+        Vehicle vehicle = new Vehicle(vehicleId, vehicleType, price, 0, driverName, vehiclePhoto);
 
         if (vehicleDAO.updateVehicle(vehicle)) {
             response.sendRedirect("admin-panel"); // Redirect back to the admin panel

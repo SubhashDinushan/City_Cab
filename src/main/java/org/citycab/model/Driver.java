@@ -1,14 +1,14 @@
 package org.citycab.model;
 
- public class Driver {
-    private String driverId;
+public class Driver {
+    private int driverId;
     private String driverName;
     private String driverNIC;
     private String driverLicenseNo;
     private String driverEmail;
     private String driverMobileNo;
 
-    private Driver(String driverId, String driverName, String driverNIC, String driverLicenseNo, String driverEmail, String driverMobileNo) {
+    private Driver(int driverId, String driverName, String driverNIC, String driverLicenseNo, String driverEmail, String driverMobileNo) {
         this.driverId = driverId;
         this.driverName = driverName;
         this.driverNIC = driverNIC;
@@ -25,11 +25,11 @@ package org.citycab.model;
         this.driverName = driverName;
     }
 
-    public String getDriverId() {
+    public int getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(String driverId) {
+    public void setDriverId(int driverId) {
         this.driverId = driverId;
     }
 

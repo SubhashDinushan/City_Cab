@@ -77,8 +77,8 @@ public class AdminPanelServlet extends HttpServlet {
             filePart.write(filePath);
             String photoPath = UPLOAD_DIR + "/" + fileName;
 
-            String driverId = vehicleDAO.getDriverIdByName(driverName);
-            if (driverId == null) {
+            int driverId = vehicleDAO.getDriverIdByName(driverName);
+            if (driverId == 0) {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Driver not found: " + driverName);
                 return;
             }

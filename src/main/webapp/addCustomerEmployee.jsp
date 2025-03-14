@@ -633,6 +633,9 @@
 <%--</html>--%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.concurrent.TimeUnit" %>
 <%
     // Session validation
     if (session.getAttribute("user") == null) {
@@ -650,6 +653,9 @@
     String price = request.getParameter("price");
     String driverName = request.getParameter("driver");
 
+    // Parse the price as a float (Rs. can be removed if it's included)
+    float pricePerDay = Float.parseFloat(price);
+
     // Set default values to avoid null issues
     if (from == null) from = "N/A";
     if (to == null) to = "N/A";
@@ -659,6 +665,27 @@
     if (vehicleType == null) vehicleType = "N/A";
     if (price == null) price = "N/A";
     if (driverName == null) driverName = "N/A";
+
+
+
+
+
+    // Initialize date format
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    // Parse the dates
+    Date depDate = dateFormat.parse(departureDate);
+    Date retDate = dateFormat.parse(returnDate);
+
+    // Calculate the difference in milliseconds
+    long diffInMillis = retDate.getTime() - depDate.getTime();
+
+    // Convert milliseconds to days
+    long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
+
+    // Calculate the total price
+    float totalPrice = diffInDays * pricePerDay;
+
 %>
 
 <!DOCTYPE html>
@@ -951,33 +978,39 @@
         <p><strong>Passengers:</strong> <%= passengers %></p>
         <h2>Selected Vehicle</h2>
         <p><strong>Vehicle Type:</strong> <%= vehicleType %></p>
-        <p><strong>Price Per Day:</strong> Rs. <%= price %></p>
+        <p><strong>Total Price:</strong> Rs. <%= totalPrice %></p>
         <p><strong>Driver:</strong> <%= driverName %></p>
     </div>
 
     <div class="container customer-form">
         <h2>Add Customer</h2>
-        <form>
-            <label for="cust-name">Customer Name:</label>
-            <input type="text" id="cust-name" name="cust-name" required>
+        <form action="SaveCustomerServlet" method="POST">
+            <input type="hidden" name="from" value="<%= from %>">
+            <input type="hidden" name="to" value="<%= to %>">
+            <input type="hidden" name="departureDate" value="<%= departureDate %>">
+            <input type="hidden" name="returnDate" value="<%= returnDate %>">
+            <input type="hidden" name="passengers" value="<%= passengers %>">
+            <input type="hidden" name="totalPrice" value="<%= totalPrice %>">
+            <input type="hidden" name="driverName" value="<%= driverName %>">
+            <input type="hidden" name="vehicleType" value="<%= vehicleType %>">
 
-            <label for="cust-address">Customer Address:</label>
-            <input type="text" id="cust-address" name="cust-address" required>
+            <label for="cusName">Customer Name:</label>
+            <input type="text" id="cusName" name="cusName" required>
 
-            <label for="cust-email">Email:</label>
-            <input type="email" id="cust-email" name="cust-email" required>
+            <label for="cusAddress">Customer Address:</label>
+            <input type="text" id="cusAddress" name="cusAddress" required>
 
-            <label for="cust-phone">Phone Number:</label>
-            <input type="tel" id="cust-phone" name="cust-phone" required>
+            <label for="cusEmail">Email:</label>
+            <input type="email" id="cusEmail" name="cusEmail" required>
 
-<%--            <button type="submit">Submit</button>--%>
+            <label for="cusMobileNo">Phone Number:</label>
+            <input type="tel" id="cusMobileNo" name="cusMobileNo" required>
+
+            <button type="submit">Add Customer</button>
         </form>
     </div>
 
-    <div class="container final-confirmation">
-        <h2>Final Confirmation</h2>
-        <a href="bookingConfirmation.jsp?from=<%= from %>&to=<%= to %>&departureDate=<%= departureDate %>&returnDate=<%= returnDate %>&passengers=<%= passengers %>&vehicle=<%= vehicleType %>&price=<%= price %>&driver=<%= driverName %>&cust-name=<%= request.getParameter("cust-name") %>&cust-address=<%= request.getParameter("cust-address") %>&cust-email=<%= request.getParameter("cust-email") %>&cust-phone=<%= request.getParameter("cust-phone") %>" class="confirm-btn">Confirm Booking</a>
-    </div>
+
 </section>
 
 <footer>
