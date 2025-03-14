@@ -25,21 +25,25 @@ public class DBConnection {
         throw new IllegalStateException("Utility class. Do not instantiate.");
     }
 
+
     /**
      * Returns a connection to the database.
      *
      * @return A Connection object to the database.
      * @throws SQLException If a database access error occurs.
      */
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
 
     /**
      * Closes the given database connection.
      *
      * @param connection The Connection object to close.
      */
+
     public static void closeConnection(Connection connection) {
         if (connection != null) {
             try {

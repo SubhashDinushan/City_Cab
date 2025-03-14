@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.citycab.utils.DBConnection;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,8 +34,8 @@ public class RegisterDriverServlet extends HttpServlet {
             conn = DBConnection.getConnection();
 
             // SQL query to insert driver details
-            String sql = "INSERT INTO drivers (driver_id, driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo, password) " +
-                    "VALUES (UUID(), ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO driver ( driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo, password) " +
+                    "VALUES ( ?, ?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);

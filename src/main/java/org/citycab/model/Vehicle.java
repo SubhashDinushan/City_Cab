@@ -4,12 +4,12 @@ public class Vehicle {
     private int vehicleId; // New field for vehicle ID
     private String vehicleType;
     private double price;
-    private String driverId; // References driver_id from the drivers table
+    private int driverId; // References driver_id from the drivers table
     private String driverName; // Temporary field to store driver name
     private String vehiclePhoto;
 
     // Constructor without vehicleId (for adding new vehicles)
-    public Vehicle(String vehicleType, double price, String driverId, String driverName, String vehiclePhoto) {
+    public Vehicle(String vehicleType, double price, int driverId, String driverName, String vehiclePhoto) {
         this.vehicleType = vehicleType;
         this.price = price;
         this.driverId = driverId;
@@ -18,7 +18,7 @@ public class Vehicle {
     }
 
     // Constructor with vehicleId (for updating existing vehicles)
-    public Vehicle(int vehicleId, String vehicleType, double price, String driverId, String driverName, String vehiclePhoto) {
+    public Vehicle(int vehicleId, String vehicleType, double price, int driverId, String driverName, String vehiclePhoto) {
         this.vehicleId = vehicleId;
         this.vehicleType = vehicleType;
         this.price = price;
@@ -53,11 +53,11 @@ public class Vehicle {
         this.price = price;
     }
 
-    public String getDriverId() {
+    public int getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(String driverId) {
+    public void setDriverId(int driverId) {
         this.driverId = driverId;
     }
 

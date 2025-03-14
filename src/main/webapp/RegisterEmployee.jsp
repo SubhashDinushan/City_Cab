@@ -1,138 +1,3 @@
-<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <title>Admin Panel - Register Employee</title>--%>
-<%--    <style>--%>
-<%--        body {--%>
-<%--            font-family: Arial, sans-serif;--%>
-<%--            background-color: #f4f4f4;--%>
-<%--            display: flex;--%>
-<%--            justify-content: center;--%>
-<%--            align-items: center;--%>
-<%--            height: 100vh;--%>
-<%--        }--%>
-
-
-<%--        .container {--%>
-<%--            background: white;--%>
-<%--            padding: 20px;--%>
-<%--            border-radius: 8px;--%>
-<%--            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);--%>
-<%--            width: 350px;--%>
-<%--            text-align: center;--%>
-<%--        }--%>
-
-<%--        h2 {--%>
-<%--            margin-bottom: 15px;--%>
-<%--            color: #333;--%>
-<%--        }--%>
-
-<%--        .error-message {--%>
-<%--            background: #ff4d4d;--%>
-<%--            color: white;--%>
-<%--            padding: 10px;--%>
-<%--            border-radius: 5px;--%>
-<%--            margin-bottom: 15px;--%>
-<%--            font-size: 14px;--%>
-<%--            font-weight: bold;--%>
-<%--            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);--%>
-<%--            text-align: center;--%>
-<%--        }--%>
-
-<%--        .form-group {--%>
-<%--            margin-bottom: 15px;--%>
-<%--            text-align: left;--%>
-<%--        }--%>
-
-<%--        label {--%>
-<%--            font-weight: bold;--%>
-<%--            display: block;--%>
-<%--            margin-bottom: 5px;--%>
-<%--        }--%>
-
-<%--        input, select {--%>
-<%--            width: 100%;--%>
-<%--            padding: 10px;--%>
-<%--            border: 1px solid #ccc;--%>
-<%--            border-radius: 5px;--%>
-<%--            font-size: 16px;--%>
-<%--        }--%>
-
-<%--        .submit-btn {--%>
-<%--            width: 100%;--%>
-<%--            background: linear-gradient(135deg, #6e8efb, #a777e3);--%>
-<%--            color: white;--%>
-<%--            border: none;--%>
-<%--            padding: 12px;--%>
-<%--            font-size: 18px;--%>
-<%--            border-radius: 6px;--%>
-<%--            cursor: pointer;--%>
-<%--            transition: 0.3s;--%>
-<%--        }--%>
-
-<%--        .submit-btn:hover {--%>
-<%--            background: linear-gradient(135deg, #5b7bf9, #9558d8);--%>
-<%--            transform: translateY(-2px);--%>
-<%--            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);--%>
-<%--        }--%>
-<%--    </style>--%>
-<%--</head>--%>
-<%--<body>--%>
-
-
-<%--<div class="container">--%>
-<%--    <h2>Register Admin / Employee</h2>--%>
-
-<%--    &lt;%&ndash; Display styled error message if it exists &ndash;%&gt;--%>
-<%--    <% String errorMessage = (String) request.getAttribute("errorMessage"); %>--%>
-<%--    <% if (errorMessage != null) { %>--%>
-<%--    <div class="error-message"><%= errorMessage %></div>--%>
-<%--    <% } %>--%>
-
-<%--    <form action="registerEmployee" method="POST">--%>
-<%--        <div class="form-group">--%>
-<%--            <label for="name">Employee Name</label>--%>
-<%--            <input type="text" id="name" name="name" placeholder="Enter employee name" required>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-group">--%>
-<%--            <label for="nic">Employee NIC</label>--%>
-<%--            <input type="text" id="nic" name="nic" placeholder="Enter employee NIC" required>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-group">--%>
-<%--            <label for="email">Email</label>--%>
-<%--            <input type="email" id="email" name="email" placeholder="Enter employee email" required>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-group">--%>
-<%--            <label for="mobile">Mobile Number</label>--%>
-<%--            <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-group">--%>
-<%--            <label for="pwd">Password</label>--%>
-<%--            <input type="password" id="pwd" name="pwd" placeholder="Enter the password" required>--%>
-<%--        </div>--%>
-
-<%--        <div class="form-group">--%>
-<%--            <label for="role">User Type</label>--%>
-<%--            <select id="role" name="role" required>--%>
-<%--                <option value="admin">Admin</option>--%>
-<%--                <option value="employee">Employee</option>--%>
-<%--            </select>--%>
-<%--        </div>--%>
-
-<%--        <button type="submit" class="submit-btn">Register</button>--%>
-<%--    </form>--%>
-<%--</div>--%>
-
-<%--</body>--%>
-<%--</html>--%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,20 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Register Employee</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             flex-direction: column;
             padding: 20px;
         }
@@ -164,11 +30,13 @@
             padding: 10px;
             text-align: center;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            display: inline;
-            margin: 0 15px;
+            margin: 10px;
         }
 
         nav ul li a {
@@ -179,49 +47,44 @@
 
         .container {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
             width: 100%;
             max-width: 400px;
-            text-align: center;
-            margin-top: 20px;
         }
 
         h2 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #333;
-        }
-
-        .error-message {
-            background: #ff4d4d;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
         }
 
         input, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: calc(100% - 40px);
+            display: inline-block;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 23px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
         }
 
         .submit-btn {
@@ -242,59 +105,31 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            nav ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav ul li {
-                display: block;
-                margin: 10px 0;
-            }
-
             .container {
                 width: 90%;
-                padding: 15px;
+                padding: 20px;
             }
-
             input, select {
                 font-size: 14px;
-                padding: 8px;
             }
-
             .submit-btn {
                 font-size: 16px;
-                padding: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            nav ul li a {
-                font-size: 16px;
+            nav ul {
+                flex-direction: column;
+                align-items: center;
             }
-
+            nav ul li {
+                margin: 5px 0;
+            }
             .container {
                 width: 100%;
             }
-
-            input, select {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .submit-btn {
-                font-size: 16px;
-                padding: 10px;
-            }
         }
-
     </style>
 </head>
 <body>
@@ -307,9 +142,9 @@
         <li><a href="registerDriver.jsp">Add Driver</a></li>
         <li>
             <% if (session.getAttribute("user") != null) { %>
-            <a href="logout">Logout</a>
+            <a href="logout" class="login-btn">Logout</a>
             <% } else { %>
-            <a href="indexLogin.jsp">Login</a>
+            <a href="indexLogin.jsp" class="login-btn">Login</a>
             <% } %>
         </li>
     </ul>
@@ -318,13 +153,12 @@
 <div class="container">
     <h2>Register Admin / Employee</h2>
 
-    <%-- Display styled error message if it exists --%>
     <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
     <% if (errorMessage != null) { %>
     <div class="error-message"><%= errorMessage %></div>
     <% } %>
 
-    <form action="registerEmployee" method="POST">
+    <form action="registerEmployee" method="POST" onsubmit="return validateForm()">
         <div class="form-group">
             <label for="name">Employee Name</label>
             <input type="text" id="name" name="name" placeholder="Enter employee name" required>
@@ -347,7 +181,10 @@
 
         <div class="form-group">
             <label for="pwd">Password</label>
-            <input type="password" id="pwd" name="pwd" placeholder="Enter the password" required>
+            <div class="password-container">
+                <input type="password" id="pwd" name="pwd" placeholder="Must be at least 6 characters" required>
+                <span class="toggle-password" onclick="togglePassword()">&#128065;</span>
+            </div>
         </div>
 
         <div class="form-group">
@@ -361,7 +198,28 @@
         <button type="submit" class="submit-btn">Register</button>
     </form>
 </div>
+<script>
+    // script.js
+    function togglePassword() {
+        let passwordField = document.getElementById("pwd");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
 
+    function validateForm() {
+        let password = document.getElementById("pwd").value;
+
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters.");
+            return false;
+        }
+        return true;
+    }
+
+</script>
 </body>
 </html>
 
