@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.citycab.utils.DBConnection;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,7 @@ public class RegisterDriverServlet extends HttpServlet {
         String license = request.getParameter("license"); // License Number
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
+        String pwd = request.getParameter("pwd");
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -32,8 +34,8 @@ public class RegisterDriverServlet extends HttpServlet {
             conn = DBConnection.getConnection();
 
             // SQL query to insert driver details
-            String sql = "INSERT INTO drivers (driver_id, driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo) " +
-                    "VALUES (UUID(), ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO driver ( driver_name, driver_nic, driver_licenNo, driver_email, driver_mobileNo, password) " +
+                    "VALUES ( ?, ?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
@@ -41,12 +43,13 @@ public class RegisterDriverServlet extends HttpServlet {
             stmt.setString(3, license);
             stmt.setString(4, email);
             stmt.setString(5, mobile);
+            stmt.setString(6, pwd);
 
             // Execute update
             int rowsInserted = stmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                response.sendRedirect("success.html"); // Redirect to success page
+                response.sendRedirect("admin-panel");
             } else {
                 response.sendRedirect("error.html"); // Redirect to error page
             }

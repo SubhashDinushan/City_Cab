@@ -1,5 +1,15 @@
-<%@ page import="java.util.List, org.citycab.model.Vehicle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List, org.citycab.model.Vehicle" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+    // Session validation
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("indexLogin.jsp");
+        return; // Stop further execution of the JSP
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,29 +121,23 @@
 
 <nav>
     <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Booking</a></li>
+        <li><a href="adminPanel.jsp">Dashboard</a></li>
+        <li><a href="success.jsp">Booking</a></li>
         <li><a href="RegisterEmployee.jsp">Add Employee</a></li>
         <li><a href="registerDriver.jsp">Add Driver</a></li>
-        <li><a href="login.jsp">Login</a></li>
+        <li>
+            <% if (session.getAttribute("user") != null) { %>
+            <a href="logout">Logout</a>
+            <% } else { %>
+            <a href="indexLogin.jsp">Login</a>
+            <% } %>
+        </li>
     </ul>
 </nav>
 
-<%--<%--%>
-<%--    String message = (String) request.getSession().getAttribute("message");--%>
-<%--    if (message != null) {--%>
-<%--        request.getSession().removeAttribute("message"); // Clear the message after displaying it--%>
-<%--%>--%>
-<%--<script>--%>
-<%--    alert("<%= message %>");--%>
-<%--</script>--%>
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
-
 <section class="admin-section">
     <h2>Add Vehicle</h2>
-    <form method="post" enctype="multipart/form-data">
+    <form action="admin-panel" method="post" enctype="multipart/form-data">
         <label for="vehicle-type">Vehicle Type:</label>
         <input type="text" id="vehicle-type" name="vehicle-type" required>
 
@@ -158,22 +162,26 @@
             <th>Price</th>
             <th>Driver Name</th>
             <th>Vehicle Photo</th>
+            <th>Actions</th>
         </tr>
         <%
-            List<Vehicle> vehicles = (List<Vehicle>) request.getAttribute("vehicles");
-            if (vehicles != null) {
-                for (Vehicle v : vehicles) {
+            List<Vehicle> vehicles = (List<Vehicle>) application.getAttribute("vehicles");
+            if (vehicles == null) {
+                vehicles = new ArrayList<>();
+            }
+            for (Vehicle v : vehicles) {
         %>
         <tr>
             <td><%= v.getVehicleType() %></td>
-            <td>$<%= v.getPrice() %></td>
+            <td>RS: <%= v.getPrice() %></td>
             <td><%= v.getDriverName() %></td>
             <td><img src="<%= v.getVehiclePhoto() %>" alt="Vehicle Image" width="100"></td>
+            <td>
+                <a href="updateVehicle.jsp?id=<%= v.getVehicleId() %>">Edit</a>
+                <a href="deleteVehicle?id=<%= v.getVehicleId() %>" onclick="return confirm('Are you sure you want to delete this vehicle?')">Delete</a>
+            </td>
         </tr>
-        <%
-                }
-            }
-        %>
+        <% } %>
     </table>
 </section>
 </body>

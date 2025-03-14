@@ -6,13 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Register Drivers</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            background: #444;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
         }
 
         .container {
@@ -20,7 +47,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
 
@@ -65,9 +93,79 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
+
+<nav>
+    <ul>
+        <li><a href="adminPanel.jsp">Dashboard</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="RegisterEmployee.jsp">Add Employee</a></li>
+        <li><a href="registerDriver.jsp">Add Driver</a></li>
+        <li>
+            <% if (session.getAttribute("user") != null) { %>
+            <a href="logout">Logout</a>
+            <% } else { %>
+            <a href="indexLogin.jsp">Login</a>
+            <% } %>
+        </li>
+    </ul>
+</nav>
 
 <div class="container">
     <h2>Register Driver</h2>
@@ -83,10 +181,9 @@
         </div>
 
         <div class="form-group">
-            <label for="license">Driver Licen</label>
-            <input type="text" id="license" name="license" placeholder="Enter Driver Licen" required>
+            <label for="license">Driver License</label>
+            <input type="text" id="license" name="license" placeholder="Enter Driver License" required>
         </div>
-
 
         <div class="form-group">
             <label for="email">Email</label>
@@ -98,9 +195,16 @@
             <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
         </div>
 
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="text" id="pwd" name="pwd" placeholder="Enter the password" required>
+        </div>
+
         <button type="submit" class="submit-btn">Register</button>
     </form>
 </div>
 
 </body>
 </html>
+
+
